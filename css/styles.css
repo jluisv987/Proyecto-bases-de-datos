@@ -1,0 +1,20 @@
+.navbar-custom {
+    background-color:#ED6A5A !important;
+ }
+ a:link, a:visited {
+   color: white;
+    font-size: 20px;
+
+ }
+ .table-striped>tbody>tr:nth-child(odd)>td,
+ .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #9BC1BC;
+  }
+
+ .table-striped>tbody>tr:nth-child(even)>td,
+ .table-striped>tbody>tr:nth-child(even)>th {
+     background-color: #5CA4A9;
+   }
+ body {
+   background-color: #F4F1BB;
+ }
