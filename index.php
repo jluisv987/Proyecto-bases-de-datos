@@ -33,7 +33,7 @@
                             <option>Titulo</option>
                             <option>Autor</option>
                             <option>Genero</option>
-                            <option>ISNB13</option>
+                            <option>ISBN13</option>
                             <option>Tipo</option>
                         </select>
                         <input type="submit" name="boton" value="Buscar" class="form-control">
