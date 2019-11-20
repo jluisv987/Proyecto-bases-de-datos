@@ -10,15 +10,12 @@
         libros.ISBN13 AS 'ISBN13',
         autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor',
-        libros.portada AS 'portada',
-        generos.genero AS 'genero'
-        FROM libros,autores,libros_autores,generos,generos_libros
+        libros.portada AS 'portada'
+        FROM libros,autores,libros_autores
         WHERE titulo LIKE '%";
         $query.=$busqueda;
         $query.="%' AND libros.id_libro = libros_autores.libros_id_libro
         AND autores.id_autor=libros_autores.autores_id_autor
-        AND libros.id_libro = generos_libros.libros_id_libro
-        AND generos.id_generos=generos_libros.generos_id_generos
         ORDER BY titulo";
         $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
 
@@ -31,16 +28,13 @@
         libros.ISBN13 AS 'ISBN13',
         autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor',
-        libros.portada AS 'portada',
-        generos.genero AS 'genero'
-        FROM libros,autores,libros_autores,generos,generos_libros
+        libros.portada AS 'portada'
+        FROM libros,autores,libros_autores
         WHERE nombre_autor LIKE '%";
         $query.=$busqueda."%' OR ";
-        $query.="apellido_autor LIKE '%".$busqueda."'";
-        $query.="AND libros.id_libro = libros_autores.libros_id_libro
+        $query.="apellido_autor LIKE '%".$busqueda."%'";
+        $query.=" AND libros.id_libro = libros_autores.libros_id_libro
         AND autores.id_autor=libros_autores.autores_id_autor
-        AND libros.id_libro = generos_libros.libros_id_libro
-        AND generos.id_generos=generos_libros.generos_id_generos
         ORDER BY titulo";
         $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
     }
@@ -73,19 +67,15 @@
         autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor',
         libros.portada AS 'portada',
-        generos.genero AS 'genero',
         tipos.tipo AS 'tipo'
-        FROM libros,autores,libros_autores,generos,generos_libros,tipos,tipos_libros
+        FROM libros,autores,libros_autores,tipos,tipos_libros
         WHERE tipo = '";
         $query.=$busqueda;
         $query.="' AND libros.id_libro = libros_autores.libros_id_libro
                 AND autores.id_autor=libros_autores.autores_id_autor
-                AND libros.id_libro = generos_libros.libros_id_libro
-                AND generos.id_generos=generos_libros.generos_id_generos
                 AND libros.id_libro = tipos_libros.libros_id_libro
                 AND tipos.id_tipo = tipos_libros.tipos_id_tipo
                 ORDER BY titulo";
-
         $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
     }
     else if($seleccion=='ISBN13')
@@ -94,25 +84,18 @@
         libros.ISBN13 AS 'ISBN13',
         autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor',
-        libros.portada AS 'portada',
-        generos.genero AS 'genero'
-        FROM libros,autores,libros_autores,generos,generos_libros
+        libros.portada AS 'portada'
+        FROM libros,autores,libros_autores
         WHERE ISBN13 = '";
         $query.=$busqueda."'";
         $query.="AND libros.id_libro = libros_autores.libros_id_libro
         AND autores.id_autor=libros_autores.autores_id_autor
-        AND libros.id_libro = generos_libros.libros_id_libro
-        AND generos.id_generos=generos_libros.generos_id_generos
         ORDER BY titulo";
         $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
     }
 
  ?>
- <nav class="navbar navbar-custom">
-     <div class="container">
-         <a href="index.php" class="navbar-brand">Buscador de libros</a>
-     </div>
- </nav>
+
 
 
  <div class="container p-4">
