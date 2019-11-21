@@ -5,13 +5,10 @@
     libros.ISBN13 AS 'ISBN13',
     autores.nombre_autor AS 'nombre_autor',
     autores.apellido_autor AS 'apellido_autor',
-    libros.portada AS 'portada',
-    generos.genero AS 'genero'
-    FROM libros,autores,libros_autores,generos,generos_libros
+    libros.portada AS 'portada'
+    FROM libros,autores,libros_autores
     WHERE libros.id_libro = libros_autores.libros_id_libro
-    AND autores.id_autor=libros_autores.autores_id_autor
-    AND libros.id_libro = generos_libros.libros_id_libro
-    AND generos.id_generos=generos_libros.generos_id_generos";
+    AND autores.id_autor=libros_autores.autores_id_autor";
     //Consigue los titulos
     $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
  ?>
