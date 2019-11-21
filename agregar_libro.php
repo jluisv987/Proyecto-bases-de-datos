@@ -2,8 +2,8 @@
 <?php include('includes/header.php');?>
 <?php
 
-$query_tipo="SELECT tipo FROM tipos";
-$query_genero ="SELECT genero FROM generos";
+$query_tipo="SELECT tipo, id_tipo FROM tipos";
+$query_genero ="SELECT genero, id_generos FROM generos";
 $result_tipo= $mysqli->query($query_tipo) or die($mysqli->error.__LINE__);
 $result_genero= $mysqli->query($query_genero) or die($mysqli->error.__LINE__);
 ?>
@@ -51,8 +51,25 @@ if (isset($_POST['boton'])) {
             Error, ingrese al menos un tipo de libro
             </div>";
             $confirma=0;
-
     }
+/*    else {
+        if (is_array($_POST['tipos']))
+        {
+          foreach($_POST['tipos'] as $value)
+          {
+            echo " Tipo ".$value;
+
+          }
+        }
+        else
+        {
+          $value = $_POST['tipos'];
+          echo " Tipo ".$value;
+
+        }
+
+    }*/
+
     if(!(isset($_POST['generos'])))
     {
 
@@ -62,6 +79,23 @@ if (isset($_POST['boton'])) {
             $confirma=0;
 
     }
+/*    else {
+        if (is_array($_POST['generos']))
+        {
+          foreach($_POST['generos'] as $value)
+          {
+            echo " Genero ".$value;
+
+          }
+        }
+        else
+        {
+          $value = $_POST['generos'];
+          echo " Genero ".$value;
+
+        }
+
+    }*/
     if(isset($_FILES['portada']))
     {
 
@@ -74,12 +108,7 @@ if (isset($_POST['boton'])) {
             //$imagen = base64_encode($imagen);
 
         }
-        else {
-            echo "<div class=\"alert alert-danger\" role=\"alert\">
-            Error, sube una imagen para la portada
-            </div>";
-            $confirma=0;
-        }
+
 
     }
     if($confirma==1)
@@ -132,6 +161,41 @@ if (isset($_POST['boton'])) {
             // este query relaciona el autor con el libro
             $query="INSERT INTO libros_autores(libros_id_libro, autores_id_autor) VALUES ('$id_libro', '$id_autor')";
             $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
+            if(isset($_POST['tipos']))
+            {
+              if (is_array($_POST['tipos']))
+              {
+                foreach($_POST['tipos'] as $value)
+                {
+                  $query="INSERT INTO tipos_libros (tipos_id_tipo, libros_id_libro) VALUES ('$value', '$id_libro')";
+                  $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
+                }
+              }
+              else
+              {
+                $value = $_POST['tipos'];
+                $query="INSERT INTO tipos_libros (tipos_id_tipo, libros_id_libro) VALUES ('$value', '$id_libro')";
+                $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
+              }
+            }
+
+            if(isset($_POST['generos']))
+            {
+              if (is_array($_POST['generos']))
+              {
+                foreach($_POST['generos'] as $value)
+                {
+                  $query="INSERT INTO generos_libros(libros_id_libro, generos_id_generos) VALUES ('$id_libro','$value')";
+                  $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
+                }
+              }
+              else
+              {
+                $value = $_POST['generos'];
+                $query="INSERT INTO generos_libros(libros_id_libro, generos_id_generos) VALUES ('$id_libro','$value')";
+                $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
+              }
+            }
         }
     }
 }
@@ -173,7 +237,7 @@ if (isset($_POST['boton'])) {
                     while($row = mysqli_fetch_array($result_tipo))
                     {
                         echo '<div class="col-md-2">';
-                        echo '<input type="checkbox" class="form-control" name="tipos[]" value="'.$row['tipo'].'"/>'.$row['tipo'];
+                        echo '<input type="checkbox" class="form-control" name="tipos[]" value="'.$row['id_tipo'].'"/>'.$row['tipo'];
                         echo '</div>';
                     }
                  ?>
@@ -185,7 +249,7 @@ if (isset($_POST['boton'])) {
                     while($row = mysqli_fetch_array($result_genero))
                     {
                         echo '<div class="col-md-2">';
-                        echo '<input type="checkbox" class="form-control" name="generos[]" value="'.$row['genero'].'"/>'.$row['genero'];
+                        echo '<input type="checkbox" class="form-control" name="generos[]" value="'.$row['id_generos'].'"/>'.$row['genero'];
                         echo '</div>';
                     }
                  ?>

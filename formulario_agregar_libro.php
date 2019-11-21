@@ -2,8 +2,8 @@
 <?php include('includes/header.php');?>
 <?php
 
-$query_tipo="SELECT tipo FROM tipos";
-$query_genero ="SELECT genero FROM generos";
+$query_tipo="SELECT tipo, id_tipo FROM tipos";
+$query_genero ="SELECT genero, id_generos FROM generos";
 $result_tipo= $mysqli->query($query_tipo) or die($mysqli->error.__LINE__);
 $result_genero= $mysqli->query($query_genero) or die($mysqli->error.__LINE__);
 ?>
@@ -43,7 +43,7 @@ $result_genero= $mysqli->query($query_genero) or die($mysqli->error.__LINE__);
                     while($row = mysqli_fetch_array($result_tipo))
                     {
                         echo '<div class="col-md-2">';
-                        echo '<input type="checkbox" class="form-control" name="tipos" value="'.$row['tipo'].'"/>'.$row['tipo'];
+                        echo '<input type="checkbox" class="form-control" name="tipos[]" value="'.$row['id_tipo'].'"/>'.$row['tipo'];
                         echo '</div>';
                     }
                  ?>
@@ -55,7 +55,7 @@ $result_genero= $mysqli->query($query_genero) or die($mysqli->error.__LINE__);
                     while($row = mysqli_fetch_array($result_genero))
                     {
                         echo '<div class="col-md-2">';
-                        echo '<input type="checkbox" class="form-control" name="generos" value="'.$row['genero'].'"/>'.$row['genero'];
+                        echo '<input type="checkbox" class="form-control" name="generos[]" value="'.$row['id_generos'].'"/>'.$row['genero'];
                         echo '</div>';
                     }
                  ?>

@@ -11,3 +11,9 @@
     <title></title>
   </head>
   <body>
+      <nav class="navbar navbar-custom">
+          <div class="container">
+              <a href="index.php" class="navbar-brand">Buscador de libros</a>
+              <a href="formulario_agregar_libro.php" class="navbar-brand">Agregar libro</a>
+          </div>
+      </nav>
