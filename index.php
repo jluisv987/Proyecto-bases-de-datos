@@ -15,11 +15,7 @@
     //Consigue los titulos
     $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
  ?>
-    <nav class="navbar navbar-custom">
-        <div class="container">
-            <a href="index.php" class="navbar-brand">Buscador de libros</a>
-        </div>
-    </nav>
+
 
 
     <div class="container p-4">
