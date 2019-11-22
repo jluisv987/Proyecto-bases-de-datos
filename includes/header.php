@@ -15,5 +15,17 @@
           <div class="container">
               <a href="index.php" class="navbar-brand">Buscador de libros</a>
               <a href="formulario_agregar_libro.php" class="navbar-brand">Agregar libro</a>
+              <?php
+                session_start();
+                if(isset($_SESSION["usuario"]))
+                {
+                    echo "<h2>".$_SESSION["usuario"]."</h2>";
+                    echo "<a href=\"logout.php\" class=\"navbar-brand\">Salir</a>";
+                }
+                else {
+                    echo "<a href=\"login.php\" class=\"navbar-brand\">Entrar</a>";
+                }
+               ?>
+
           </div>
       </nav>
