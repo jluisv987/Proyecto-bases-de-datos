@@ -6,7 +6,8 @@
     if($seleccion=='Titulo')
     {
         $busqueda= strtolower($_REQUEST['busqueda']);
-        $query="SELECT libros.titulo AS 'titulo',
+        $query="SELECT libros.id_libro AS 'id_libro',
+        libros.titulo AS 'titulo',
         libros.ISBN13 AS 'ISBN13',
         autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor',
@@ -24,7 +25,8 @@
     else if($seleccion=='Autor')
     {
         $busqueda= strtolower($_REQUEST['busqueda']);
-        $query="SELECT libros.titulo AS 'titulo',
+        $query="SELECT libros.id_libro AS 'id_libro',
+        libros.titulo AS 'titulo',
         libros.ISBN13 AS 'ISBN13',
         autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor',
@@ -42,7 +44,8 @@
     else if($seleccion=='Genero')
     {
         $busqueda= $_REQUEST['busqueda'];
-        $query="SELECT libros.titulo AS 'titulo',
+        $query="SELECT libros.id_libro AS 'id_libro',
+        libros.titulo AS 'titulo',
         libros.ISBN13 AS 'ISBN13',
         autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor',
@@ -62,7 +65,8 @@
     else if($seleccion=='Tipo')
     {
         $busqueda= $_REQUEST['busqueda'];
-        $query="SELECT libros.titulo AS 'titulo',
+        $query="SELECT libros.id_libro AS 'id_libro',
+        libros.titulo AS 'titulo',
         libros.ISBN13 AS 'ISBN13',
         autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor',
@@ -80,7 +84,8 @@
     }
     else if($seleccion=='ISBN13')
     {
-        $query="SELECT libros.titulo AS 'titulo',
+        $query="SELECT libros.id_libro AS 'id_libro',
+        libros.titulo AS 'titulo',
         libros.ISBN13 AS 'ISBN13',
         autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor',
@@ -140,7 +145,7 @@
                              if($aux!=$row['titulo'])
                              {
                                  echo "<tr>";
-                                 echo "<td>" . $row['titulo'] . "</td>";
+                                 echo "<td><a href='libro.php?id=".$row['id_libro']."'>" . $row['titulo'] ."</a></td>";
                                  echo "<td>" . $row['ISBN13'] . "</td>";
                                  echo "<td>".$row['nombre_autor']." ".$row['apellido_autor']."</td>";
                                  echo "<td>".'<img src="data:image;base64,'.base64_encode($row['portada']).'"alt="Image" style="width:100px;height:150px;"'."</td>";

@@ -19,7 +19,9 @@
                 session_start();
                 if(isset($_SESSION["usuario"]))
                 {
-                    echo "<h2>".$_SESSION["usuario"]."</h2>";
+                    $usuario=$_SESSION['usuario'];
+                    echo "<a href='perfil.php?usuario=".$usuario."' class=\"navbar-brand\">".$usuario."</a>";
+                    echo "<a href=\"librero.php\" class=\"navbar-brand\">Tu librero</a>";
                     echo "<a href=\"logout.php\" class=\"navbar-brand\">Salir</a>";
                 }
                 else {

@@ -1,6 +1,7 @@
 
  <?php include('includes/database.php');?>
  <?php include('includes/header.php');?>
+
  <?php
      $id = $_GET['id'];
      $query_libros="SELECT titulo ,portada ,isbn13 ,descripcion FROM libros WHERE id_libro='$id'";
@@ -31,9 +32,45 @@
         AND generos.id_generos=generos_libros.generos_id_generos";
      $result_generos=$mysqli->query($query_generos) or die($mysqli->error.__LINE__);
   ?>
+  <?php
+     if(isset($_POST['boton']))
+     {
+         $usuario = $_SESSION['usuario'];
+         $query_id="SELECT id_usuario FROM usuarios WHERE nombre_usuario = '$usuario' ";
+         $result_id=$mysqli->query($query_id) or die($mysqli->error.__LINE__);
+         $row_id= mysqli_fetch_array($result_id);
+         $id_usuario=$row_id['id_usuario'];
+         $query_usuario="SELECT libros_id_libro
+         FROM libros_usuarios
+         WHERE libros_id_libro = '$id' AND usuarios_id_usuario = '$id_usuario'";
+         $result_usuario=$mysqli->query($query_usuario) or die($mysqli->error.__LINE__);
+         if(mysqli_num_rows($result_usuario)>=1)
+         {
+             echo "<div class=\"alert alert-danger\" role=\"alert\">
+             Error, este libro ya ha sido agregado a tu cuenta
+             </div>";
+         }
+         else {
+
+
+            $vincular="INSERT INTO libros_usuarios (libros_id_libro, usuarios_id_usuario) VALUES ('$id', '$id_usuario')";
+            $result_vincular= $mysqli->query($vincular) or die($mysqli->error.__LINE__);
+            echo "<div class=\"alert alert-success\" role=\"alert\">
+            Libro agregado excitosamente a tu perfil
+            </div>";
+         }
+     }
+   ?>
 <div class="container p-4">
     <div class="card card-body">
-        <?php echo "<h2>".$row['titulo']."</h2>"; ?>
+        <?php echo "<h2>".$row['titulo']."  </h2>";
+        if(isset($_SESSION["usuario"]))
+        {
+        echo "<form method=\"post\" class=\"form_search\">
+            <input type=\"submit\" name=\"boton\" value=\"Agregar libro\" class=\"form-control\" style=\"background-color: springgreen\"></form>";
+        }
+         ?>
+
         <div class="row">
 
             <div class="col-md-5">
