@@ -4,9 +4,13 @@
 
  <?php
      $id = $_GET['id'];
-     $query_libros="SELECT titulo ,portada ,isbn13 ,descripcion FROM libros WHERE id_libro='$id'";
+
+     $query_libros="SELECT titulo ,portada ,isbn13 ,descripcion,visitas FROM libros WHERE id_libro='$id'";
      $result_libros=$mysqli->query($query_libros) or die($mysqli->error.__LINE__);
      $row = mysqli_fetch_array($result_libros);
+     $visita=$row['visitas']+1;
+     $visitas = "UPDATE libros SET visitas ='$visita' WHERE id_libro='$id'";
+     $result_visitas=$mysqli->query($visitas) or die($mysqli->error.__LINE__);
      $query_autores="SELECT autores.nombre_autor AS 'nombre_autor',
         autores.apellido_autor AS 'apellido_autor'
         FROM autores, libros_autores, libros

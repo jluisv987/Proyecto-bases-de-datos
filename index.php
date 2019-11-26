@@ -9,7 +9,9 @@
     libros.portada AS 'portada'
     FROM libros,autores,libros_autores
     WHERE id_libro = libros_autores.libros_id_libro
-    AND autores.id_autor=libros_autores.autores_id_autor";
+    AND autores.id_autor=libros_autores.autores_id_autor
+    ORDER BY libros.visitas DESC
+    LIMIT 10";
     //Consigue los titulos
     $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
  ?>
@@ -39,7 +41,7 @@
             </div>
             <!--Mostrar libros-->
             <div class="col-md-8" >
-                <h2>Todos los libros</h2>
+                <h2>Los 10 libros mas populares</h2>
                 <table class="table table-striped">
                       <thead style="background: #5CA4A9">
                         <tr>

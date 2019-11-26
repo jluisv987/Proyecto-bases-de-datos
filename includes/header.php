@@ -14,12 +14,13 @@
       <nav class="navbar navbar-custom">
           <div class="container">
               <a href="index.php" class="navbar-brand">Buscador de libros</a>
-              <a href="formulario_agregar_libro.php" class="navbar-brand">Agregar libro</a>
+
               <?php
                 session_start();
                 if(isset($_SESSION["usuario"]))
                 {
                     $usuario=$_SESSION['usuario'];
+                    echo "<a href=\"formulario_agregar_libro.php\" class=\"navbar-brand\">Agregar libro</a>";
                     echo "<a href='perfil.php?usuario=".$usuario."' class=\"navbar-brand\">".$usuario."</a>";
                     echo "<a href=\"librero.php\" class=\"navbar-brand\">Tu librero</a>";
                     echo "<a href=\"logout.php\" class=\"navbar-brand\">Salir</a>";
