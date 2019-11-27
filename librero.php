@@ -19,6 +19,7 @@
     ORDER by titulo";
     $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
 ?>
+<div class="container p-4">
     <div class="col-md-8" >
         <h2>Todos tus libros</h2>
             <table class="table table-striped">
@@ -52,6 +53,8 @@
                      </tbody>
                    </table>
            </div>
+</div>
 
+</div>
 
 <?php include('includes/footer.php');?>

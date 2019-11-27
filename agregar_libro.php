@@ -196,6 +196,9 @@ if (isset($_POST['boton'])) {
                 $result= $mysqli->query($query) or die($mysqli->error.__LINE__);
               }
             }
+            echo "<div class=\"alert alert-success\" role=\"alert\">
+            Libro agregado excitosamente a tu perfil
+            </div>";
         }
     }
 }

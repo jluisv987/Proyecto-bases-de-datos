@@ -9,7 +9,18 @@
  ?>
     <div class="container p-4">
         <div class="card card-body">
-            <div class="col-md-4">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                           <?php
+                            echo '<img src="data:image;base64,'.base64_encode($row['imagen_perfil']).'"alt="Image" style="width:150px;height:225px;"';
+                            ?>
+                        </div>
+
+
+                    </div>
+            <div class="col-md-5">
                  <?php
                     echo "<p><b>Nombre: </b>".$row['nombre']." ".$row['apellido']."</p>";
                     echo "<p><b>Edad: </b>".$row['edad']."</p>";

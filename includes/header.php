@@ -21,12 +21,14 @@
                 {
                     $usuario=$_SESSION['usuario'];
                     echo "<a href=\"formulario_agregar_libro.php\" class=\"navbar-brand\">Agregar libro</a>";
+                    echo "<a href=\"recomendaciones.php\" class=\"navbar-brand\">Recomendaciones</a>";
                     echo "<a href='perfil.php?usuario=".$usuario."' class=\"navbar-brand\">".$usuario."</a>";
                     echo "<a href=\"librero.php\" class=\"navbar-brand\">Tu librero</a>";
                     echo "<a href=\"logout.php\" class=\"navbar-brand\">Salir</a>";
                 }
                 else {
                     echo "<a href=\"login.php\" class=\"navbar-brand\">Entrar</a>";
+                    echo "<a href=\"registrar.php\" class=\"navbar-brand\">Registrate</a>";
                 }
                ?>
 
